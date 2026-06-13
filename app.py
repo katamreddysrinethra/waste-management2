@@ -158,6 +158,10 @@ else:
             st.rerun()
 
         # Role-specific navigation
+page = st.sidebar.radio("Menu",
+                        ["Dashboard", "Request Pickup", "Pickup History", "Rewards", "Complaints", "Environmental Impact",
+                         "Smart Bin Locator", "Education Hub", "Collector Dashboard", "Marketplace", "Analytics"]
+                        )        
         if user["role"] == "Citizen":
             page = st.radio(
                 "Navigation",
