@@ -145,6 +145,8 @@ else:
 
     user = st.session_state.user
 
+    page = None
+
     with st.sidebar:
 
         st.title("♻️ EcoCycle")
@@ -158,6 +160,7 @@ else:
             st.rerun()
 
         # Role-specific navigation
+        
         if user["role"] == "Citizen":
             page = st.radio(
                 "Navigation",
@@ -191,39 +194,34 @@ else:
                     "Analytics",
                 ],
             )
-if page == "Dashboard":
-    show_dashboard(user)
+        st.write("DEBUG PAGE=", page)
+        if page == "Dashboard":
+            show_dashboard(user)
+        elif page == "Request Pickup":
+            show_pickup_request(user)
 
-elif page == "Request Pickup":
-    show_pickup_request(user)
+        elif page == "Pickup History":
+            show_pickup_history(user)
 
-elif page == "Pickup History":
-    show_pickup_history(user)
+        elif page == "Collector Dashboard":
+            show_collector_dashboard(user)
 
-elif page == "Collector Dashboard":
-    show_collector_dashboard(user)
+        elif page == "Complaints":
+            show_complaints(user)
 
-elif page == "Complaints":
-    show_complaints(user)
+        elif page == "Environmental Impact":
+            show_environmental_impact(user)
 
-elif page == "Environmental Impact":
-    show_environmental_impact(user)
-
-elif page == "Smart Bin Locator":
-    show_bin_locator()
-
-elif page == "Rewards":
-    show_rewards(user)
-
-elif page == "Marketplace":
-    show_marketplace(user)
-
-elif page == "Education Hub":
-    show_education()
-
-elif page == "Analytics":
-    show_admin_analytics()
-
-from utils.styles import load_css
+        elif page == "Smart Bin Locator":
+            show_bin_locator()
+        elif page == "Rewards":
+            show_rewards(user)
+        elif page == "Marketplace":
+            show_marketplace(user)
+        elif page == "Education Hub":
+            show_education()
+        elif page == "Analytics":
+            show_admin_analytics()
+            from utils.styles import load_css
 
 load_css()
